@@ -51,9 +51,9 @@ spec:
             backend:
               serviceName: "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"
               {{- if and .Values.tls.enabled .Values.tls.proxy.enabled }}
-              servicePort: {{ .Values.proxy.ports.https }}
+              servicePort: {{ .Values.proxy.ports.https.port }}
               {{- else }}
-              servicePort: {{ .Values.proxy.ports.http }}
+              servicePort: {{ .Values.proxy.ports.http.port }}
               {{- end }}
             {{- else }}
             pathType: ImplementationSpecific
@@ -62,9 +62,9 @@ spec:
                 name: "{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}"
                 port:
                   {{- if and .Values.tls.enabled .Values.tls.proxy.enabled }}
-                  number: {{ .Values.proxy.ports.https }}
+                  number: {{ .Values.proxy.ports.https.port }}
                   {{- else }}
-                  number: {{ .Values.proxy.ports.http }}
+                  number: {{ .Values.proxy.ports.http.port }}
                   {{- end }}
             {{- end }}
       {{- if .Values.proxy.ingress.hostname }}

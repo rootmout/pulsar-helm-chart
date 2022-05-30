@@ -47,16 +47,16 @@ data:
   {{- if .Values.toolset.useProxy }}
   # talk to proxy
   {{- if and .Values.tls.enabled .Values.tls.proxy.enabled }}
-  webServiceUrl: "https://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.https }}/"
-  brokerServiceUrl: "pulsar+ssl://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.pulsarssl }}/"
+  webServiceUrl: "https://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.https.port }}/"
+  brokerServiceUrl: "pulsar+ssl://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.pulsarssl.port }}/"
   useTls: "true"
   tlsAllowInsecureConnection: "false"
   tlsTrustCertsFilePath: "/pulsar/certs/proxy-ca/ca.crt"
   tlsEnableHostnameVerification: "false"
   {{- end }}
   {{- if not (and .Values.tls.enabled .Values.tls.proxy.enabled) }}
-  webServiceUrl: "http://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.http }}/"
-  brokerServiceUrl: "pulsar://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.pulsar }}/"
+  webServiceUrl: "http://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.http.port }}/"
+  brokerServiceUrl: "pulsar://{{ template "pulsar.fullname" . }}-{{ .Values.proxy.component }}:{{ .Values.proxy.ports.pulsar.port }}/"
   {{- end }}
   {{- end }}
   # Authentication Settings
